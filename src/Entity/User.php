@@ -42,9 +42,15 @@ class User implements UserInterface, \Serializable
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="user", orphanRemoval=true)
+     */
+    private $contacts;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function __toString()
@@ -179,6 +185,37 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($article->getUsers() === $this) {
                 $article->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->contains($contact)) {
+            $this->contacts->removeElement($contact);
+            // set the owning side to null (unless already changed)
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
             }
         }
 
