@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <!-- Section: Contact v.3 -->
+<section class="contact-section my-5 ">
+
+  <!-- Form with header -->
+  <div class="card">
+
+    <!-- Grid row -->
+    <div class="row mx-auto">
+
+      <!-- Grid column -->
+      <div class="col-md-5">
+
+        <div class="card-body form">
+
+          <!-- Header -->
+          <h3 class="mt-4"><i class="fas fa-envelope pr-2"></i>Nous contacter:</h3>
+          {{form_start(form)}}
+
+          <!-- Grid row -->
+          <div class="row">
+          
+            <!-- Grid column -->
+            <div class="col-6">
+                {{form_row(form.nom)}}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6">
+                {{form_row(form.prenom)}}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6">
+                {{form_row(form.email)}}
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6">
+                {{form_row(form.message)}}
+            </div>
+            <div class="col-6">
+                <a class="btn-floating btn-lg blue">
+                  <i class="far fa-paper-plane">{{form_row(form.envoyer)}}</i>
+                </a>
+            </div>
+            <!-- Grid column -->
+
+          <!-- Grid row -->
+        </div>
+{{form_end(form)}}
+    </div>
+  </div>  
+      <!-- Grid row -->
+    <div class="row mx-auto">
+      <!-- Grid column -->
+
+        <div class="card-body contact text-center h-100 white-text">
+
+          <h3 class="my-5 pb-2">Contact information</h3>
+          <ul class="text-center list-unstyled ml-4">
+            <li>
+              <p><i class="fas fa-map-marker-alt pr-2"></i>Strasbourg 67200 , France</p>
+            </li>
+            <li>
+              <p><i class="fas fa-phone pr-2"></i>+ 01 234 567 89</p>
+            </li>
+            <li>
+              <p><i class="fas fa-envelope pr-2"></i>contact@example.com</p>
+            </li>
+          </ul>
+          <hr class="hr-light my-5">
+          
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    <!-- Grid row -->
+
+  </div>
+  <!-- Form with header -->
+
+</section>
+<!-- Section: Contact v.3 -->
+{% endblock %}

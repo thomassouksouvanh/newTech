@@ -41,9 +41,9 @@ class AdminUSerController extends AbstractController
     }
 
     /**
-     * @Route(/"editUser/{id}", name="edit_user")
+     * @Route("/editUser/{id}", name="edit_user")
      */
-    public function editUser(User $user, Request $request, EntityManagerInterface $entityManagerInterface)
+     public function editUser(User $user, Request $request, EntityManagerInterface $entityManagerInterface)
     {
         $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest();
@@ -64,5 +64,5 @@ class AdminUSerController extends AbstractController
         [
             'form' => $form->createView()
         ]);
-    }
+    } 
 }
