@@ -47,6 +47,31 @@ class User implements UserInterface, \Serializable
      */
     private $contacts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reset;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -139,25 +164,23 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
             // see section on salt below
             // $this->salt,
-        ));
+        ]);
     }
 
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        list (
+        [
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);
+            ] = unserialize($serialized, array('allowed_classes' => false));
     }
 
     /**
@@ -218,6 +241,61 @@ class User implements UserInterface, \Serializable
                 $contact->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getReset(): ?string
+    {
+        return $this->reset;
+    }
+
+    public function setReset(?string $reset): self
+    {
+        $this->reset = $reset;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
