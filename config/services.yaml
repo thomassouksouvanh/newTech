@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.uploadFile: /uploads/images/featured
-    mailer_setTo: '%env(resolve:MAILER_MY_ADDRESS)%'
+    mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
 services:
     # default configuration for services in *this* file
     _defaults:

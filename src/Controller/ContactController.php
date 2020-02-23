@@ -9,13 +9,15 @@ use Swift_Mailer;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request,EntityManagerInterface $entityManagerInterface, Contact $contact,Swift_Mailer $mailer)
+    public function index(Request $request,EntityManagerInterface $entityManagerInterface, Contact $contact, MailerInterface $mailer)
     {
         $form = $this->createForm(ContactType::class,$contact);
         $form->handleRequest($request);
@@ -24,13 +26,14 @@ class ContactController extends AbstractController
         {
             $contacts = $form->getData();
            //ici nous enverrons le mail
-           $message = (new \Swift_Message('Nouveau contact'))
+           $message = (new Email ())
            // on attribue l'expediteur
-            ->setFrom($contacts['email'])
+            ->from($contacts['email'])
             // on attribue le destinataire
-            ->setTo('mailer_setTo')
+            ->to($this->getParameter('my_adress'))
             // on creer le messsage avec la vue twig
-            ->setBody(
+            ->subject('Nouveau contact')
+            ->html(
                 $this->renderView(
                     'email/contact/notification',[
                         'contact'=> $contacts

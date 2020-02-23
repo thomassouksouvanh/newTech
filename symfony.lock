@@ -109,11 +109,40 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.39"
     },
+    "helios-ag/fm-elfinder-bundle": {
+        "version": "10.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "10.0",
+            "ref": "dcc740749981bf9f4df447dae46483d41bad7f73"
+        },
+        "files": [
+            "config/packages/fm_elfinder.yaml",
+            "config/routes/fm_elfinder.yaml"
+        ]
+    },
+    "imagine/imagine": {
+        "version": "1.2.3"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
     "jms/metadata": {
         "version": "2.1.0"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "1d42bc3f713130582e6e0c475c49bc327ab0a2a2"
+        },
+        "files": [
+            "config/packages/liip_imagine.yaml",
+            "config/routes/liip_imagine.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.3.0"
@@ -163,8 +192,8 @@
             "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
-    "swiftmailer/swiftmailer": {
-        "version": "v6.2.3"
+    "studio-42/elfinder": {
+        "version": "2.1.53"
     },
     "symfony/asset": {
         "version": "v4.4.4"
@@ -256,6 +285,15 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/google-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
+        }
+    },
     "symfony/http-foundation": {
         "version": "v4.4.4"
     },
@@ -267,6 +305,18 @@
     },
     "symfony/intl": {
         "version": "v4.4.4"
+    },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "15658c2a0176cda2e7dba66276a2030b52bd81b2"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -309,6 +359,9 @@
     },
     "symfony/process": {
         "version": "v4.4.4"
+    },
+    "symfony/profiler-pack": {
+        "version": "v1.0.4"
     },
     "symfony/property-access": {
         "version": "v4.4.4"
@@ -360,19 +413,8 @@
     "symfony/string": {
         "version": "v5.0.4"
     },
-    "symfony/swiftmailer-bundle": {
-        "version": "2.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.5",
-            "ref": "ae4d22af30bbd484506bc1817c5a3ef72c855b93"
-        },
-        "files": [
-            "config/packages/dev/swiftmailer.yaml",
-            "config/packages/swiftmailer.yaml",
-            "config/packages/test/swiftmailer.yaml"
-        ]
+    "symfony/templating": {
+        "version": "v4.4.4"
     },
     "symfony/translation": {
         "version": "3.3",
@@ -428,6 +470,20 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.4"
+    },
+    "symfony/web-profiler-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        },
+        "files": [
+            "config/packages/dev/web_profiler.yaml",
+            "config/packages/test/web_profiler.yaml",
+            "config/routes/dev/web_profiler.yaml"
+        ]
     },
     "symfony/web-server-bundle": {
         "version": "3.3",
