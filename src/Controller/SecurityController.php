@@ -24,10 +24,11 @@ class SecurityController extends AbstractController
     */
     public function forgetPassword(EntityManagerInterface $entityManagerInterface,Request $request, UserRepository $userRepository,MailerInterface $mailer, TokenGeneratorInterface $tokenGeneratorInterface)
     {
+
         $form = $this->createForm(ResetPassType::class);
         $form->handleRequest($request);
 
-        if($form->isValid() && $form->isSubmitted())
+        if($form->isSubmitted() && $form->isValid())
         {
             // On récupère les données
             $data = $form->getData();
@@ -42,7 +43,6 @@ class SecurityController extends AbstractController
                 
                 // On retourne sur la page de connexion
                 return $this->redirectToRoute('app_login');
-
             }
 
             // On génère un token
@@ -75,16 +75,17 @@ class SecurityController extends AbstractController
             $mailer->send($message);
 
             // On crée le message flash de confirmation
-            $this->addFlash('message', 'L\'email de réinitialisation du mot de passe envoyé !');
+            $this->addFlash('message', 'L\'email de réinitialisation du mot de passe a été envoyé !');
 
             // On redirige vers la page de login
             return $this->redirectToRoute('app_login');
         }
 
         // On envoie le formulaire à la vue
-        return $this->render('security/forgotten_password.html.twig',
-            ['form' => $form->createView()]);
-
+        return $this->render('security/forgottenPassword.html.twig',
+            [
+                'form' => $form->createView()
+            ]);
     }
 
     /**
@@ -98,8 +99,7 @@ public function resetPassword(Request $request,$token, UserPasswordEncoderInterf
     // Si l'utilisateur n'existe pas
     if ($user === null) {
         // On affiche une erreur
-        $this->addFlash('danger', 'Token Inconnu');
-        return $this->redirectToRoute('app_login');
+        $this->addFlash('danger', 'L\'Email n\'existe pas');
     }
 
     // Si le formulaire est envoyé en méthode post
@@ -119,9 +119,12 @@ public function resetPassword(Request $request,$token, UserPasswordEncoderInterf
         $this->addFlash('message', 'Mot de passe mis à jour');
         // On redirige vers la page de connexion
         return $this->redirectToRoute('app_login');
-    }else {
+    
         // Si on n'a pas reçu les données, on affiche le formulaire
-        return $this->render('security/reset_password.html.twig', ['token' => $token]);
+        return $this->render('security/resetPassword.html.twig', 
+        [
+            'token' => $token
+        ]);
     }
 
 }

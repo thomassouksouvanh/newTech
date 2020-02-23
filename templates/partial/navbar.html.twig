@@ -32,7 +32,7 @@
         <form class="form-inline mr-5 ">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> 
+    </form>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light">
@@ -44,11 +44,17 @@
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user fa-2x"></i>
         </a>
+
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
+          {% if app.user %}
+          <a class="dropdown-item" href="#">Mon profil</a>
+          <a class="dropdown-item" href="#">Autre</a>
+          <hr>
+           <a class="dropdown-item" href="{{path('app_logout')}}">Se Déconnecter</a>
+          {% else %}
           <a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          {% endif %}
         </div>
       </li>
     </ul>
